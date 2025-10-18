@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/OnBoardFragment">
+
+
+    <fragment
+        android:id="@+id/OnBoardFragment"
+        android:name="com.example.mynots2.ui.on_board.OnBoardFragment"
+        android:label="OnBoardFragment"
+        tools:layout="@layout/fragment_on_board">
+
+
+        <action
+            android:id="@+id/action_OnBoardFragment_to_MainFragment"
+            app:destination="@id/MainFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/MainFragment"
+        android:name="com.example.mynots2.ui.main_fragment.MainFragment"
+        android:label="MainFragment"
+        tools:layout="@layout/fragment_main">
+
+
+
+    </fragment>
+</navigation>
+
+    <!--    app:startDestination="@id/FirstFragment">-->
