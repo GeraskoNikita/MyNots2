@@ -80,6 +80,10 @@ dependencies {
     implementation(libs.play.services.auth)
 
 
+    //Circle Image View
+    implementation(libs.circleimageview)
+
+
 
 
 }

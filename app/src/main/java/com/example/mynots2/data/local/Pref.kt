@@ -19,5 +19,15 @@ class Pref(context: Context) {
         return pref.getBoolean(AppKey.ON_BOARD_KEY, false)
     }
 
+    fun saveUserAuth(bool: Boolean) {
+        pref.edit{
+            putBoolean(AppKey.ON_AUTH, bool)
+        }
+    }
+
+    fun isUserAuth(): Boolean {
+        return pref.getBoolean(AppKey.ON_AUTH, false)
+    }
+
 
 }

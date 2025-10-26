@@ -53,13 +53,18 @@ class OnBoardFragment : Fragment() {
             }
         })
         binding.tvSkip.setOnClickListener {
-            findNavController().navigate(R.id.action_OnBoardFragment_to_MainFragment)
-
-            pref.saveOnBoard(true)
+            if (pref.isUserAuth()) {
+                findNavController().navigate(R.id.action_OnBoardFragment_to_MainFragment)
+            }else{
+                findNavController().navigate(R.id.action_OnBoardFragment_to_AuthFragment)
+            }
         }
         binding.beginButton.setOnClickListener {
-            findNavController().navigate(R.id.action_OnBoardFragment_to_MainFragment)
-            pref.saveOnBoard(true)
+            if (pref.isUserAuth()) {
+                findNavController().navigate(R.id.action_OnBoardFragment_to_MainFragment)
+            }else{
+                findNavController().navigate(R.id.action_OnBoardFragment_to_AuthFragment)
+            }
         }
 
         initdData()

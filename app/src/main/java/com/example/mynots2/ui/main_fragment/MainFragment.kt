@@ -9,12 +9,17 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
 import com.example.mynots2.App
 import com.example.mynots2.R
 import com.example.mynots2.data.model.NotesModel
 import com.example.mynots2.databinding.FragmentMainBinding
 import com.example.mynots2.ui.main_fragment.adapter.NotesAdapter
 import com.google.android.material.button.MaterialButton
+import com.google.firebase.Firebase
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.auth
 
 class MainFragment : Fragment() {
     private lateinit var binding: FragmentMainBinding
@@ -49,6 +54,17 @@ class MainFragment : Fragment() {
 
         initView()
         getData()
+
+        val auth: FirebaseAuth = Firebase.auth
+
+        val user: FirebaseUser? = auth.currentUser
+        user?.let {
+            binding.tvUserName.text = user.displayName
+            Glide.with(this)
+                .load(it.photoUrl)
+                .into(binding.ivAvatar)
+
+        }
         binding.btAdd.setOnClickListener {
             findNavController().navigate(R.id.action_MainFragment_to_createNotesFragment)
         }
@@ -56,7 +72,7 @@ class MainFragment : Fragment() {
 
     private fun initView() {
 
-        adapter = NotesAdapter(::onLongClick)
+        adapter =NotesAdapter(::onLongClick, :: onClick)
         binding.rvNots.adapter = adapter
     }
 
@@ -84,6 +100,11 @@ class MainFragment : Fragment() {
         }
         dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
         dialog.show()
+    }
+
+    private fun onClick(notesModel: NotesModel){
+        findNavController().navigate(R.id.action_MainFragment_to_createNotesFragment)
+
     }
 }
 

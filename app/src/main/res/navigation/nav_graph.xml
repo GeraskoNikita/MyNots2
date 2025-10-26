@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_OnBoardFragment_to_MainFragment"
             app:destination="@id/MainFragment" />
+        <action
+            android:id="@+id/action_OnBoardFragment_to_AuthFragment"
+            app:destination="@id/authFragment2" />
 
     </fragment>
     <fragment
@@ -38,6 +41,11 @@
             android:id="@+id/action_createNotesFragment_to_MainFragment"
             app:destination="@id/MainFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/authFragment2"
+        android:name="com.example.mynots2.ui.auth.AuthFragment"
+        android:label="fragment_auth"
+        tools:layout="@layout/fragment_auth" />
 </navigation>
 
     <!--    app:startDestination="@id/FirstFragment">-->
