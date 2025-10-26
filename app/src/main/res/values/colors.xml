@@ -5,4 +5,8 @@
     <color name="bg_color">#252525</color>
     <color name="gray">#CFCFCF</color>
     <color name="orange">#D88B02</color>
+    <color name="bgTextInput">#535353</color>
+    <color name="light_gray">#535353</color>
+    <color name="transparent">#00000000</color>
+
 </resources>

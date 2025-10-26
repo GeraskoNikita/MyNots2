@@ -30,7 +30,7 @@ class OnBoardAdapter(var onBoardList: ArrayList<OnBoardModel>) :
         position: Int
     ) {
         holder.onBind(onBoardList[position])
-//        Log.d("ololo" ,"onBindViewHolder"+position.toString())
+
 
     }
 
@@ -46,8 +46,7 @@ class OnBoardAdapter(var onBoardList: ArrayList<OnBoardModel>) :
             binding.lottieImg.setAnimation(onBoardModel.img)
             binding.tvTitle.text = onBoardModel.title
             binding.tvDesc.text = onBoardModel.desc
-//            toggleButtonsVisibility(bindingAdapterPosition)
-//            Log.d("ololo" ,"OnBoardHolder"+bindingAdapterPosition.toString())
+
 
         }
     }

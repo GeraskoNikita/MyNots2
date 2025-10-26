@@ -8,8 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.example.mynots2.R
-import com.example.mynots2.core.AppKey
-import com.example.mynots2.data.local_data.Pref
+import com.example.mynots2.data.local.Pref
 import com.example.mynots2.data.model.OnBoardModel
 import com.example.mynots2.databinding.FragmentOnBoardBinding
 import com.example.mynots2.ui.on_board.adapter.OnBoardAdapter
@@ -39,31 +38,36 @@ class OnBoardFragment : Fragment() {
                 super.onPageSelected(position)
 
                 when (position) {
-                    0 -> {
-//                        Log.d("ololo", position.toString())
-                    }
-
                     1 -> {
                         binding.beginButton.visibility = View.INVISIBLE
                         binding.tvSkip.visibility = View.VISIBLE
-//                        Log.d("ololo", position.toString())
+
                     }
 
                     2 -> {
                         binding.beginButton.visibility = View.VISIBLE
                         binding.tvSkip.visibility = View.INVISIBLE
-//                        Log.d("ololo", position.toString())
+
                     }
                 }
             }
         })
         binding.tvSkip.setOnClickListener {
-            findNavController().navigate(R.id.action_OnBoardFragment_to_MainFragment)
-            pref.saveOnBoard(AppKey.ON_BOARD_KEY, true)
+            if (pref.isUserAuth()) {
+                findNavController().navigate(R.id.action_OnBoardFragment_to_MainFragment)
+            }else{
+                findNavController().navigate(R.id.action_OnBoardFragment_to_AuthFragment)
+            }
+
+            pref.saveOnBoard(true)
         }
         binding.beginButton.setOnClickListener {
-            findNavController().navigate(R.id.action_OnBoardFragment_to_MainFragment)
-            pref.saveOnBoard(AppKey.ON_BOARD_KEY, true)
+            if (pref.isUserAuth()) {
+                findNavController().navigate(R.id.action_OnBoardFragment_to_MainFragment)
+            }else{
+                findNavController().navigate(R.id.action_OnBoardFragment_to_AuthFragment)
+            }
+            pref.saveOnBoard(true)
         }
 
         initdData()
@@ -79,7 +83,7 @@ class OnBoardFragment : Fragment() {
 
     }
 
-    private fun initdData(): Unit {
+    private fun initdData() {
         listModel.add(
             OnBoardModel(
                 title = "Удобство",
@@ -106,7 +110,6 @@ class OnBoardFragment : Fragment() {
 
 
     }
-
 
 
 }

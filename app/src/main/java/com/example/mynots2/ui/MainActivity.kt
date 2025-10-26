@@ -4,9 +4,8 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
-import com.example.mynots2.App
 import com.example.mynots2.R
-import com.example.mynots2.data.local_data.Pref
+import com.example.mynots2.data.local.Pref
 import com.example.mynots2.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -22,8 +21,6 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
-
         pref = Pref(this)
 
 
@@ -33,8 +30,10 @@ class MainActivity : AppCompatActivity() {
         val navGraph = navHost.navController.navInflater.inflate(R.navigation.nav_graph)
 
         navGraph.setStartDestination(
-            if (pref.isUserSeen()) {
+            if (pref.isUserSeen() && pref.isUserAuth()) {
                 R.id.MainFragment
+            }else if(pref.isUserSeen() && !pref.isUserAuth()){
+                R.id.AuthFragment
             } else {
                 R.id.OnBoardFragment
 
