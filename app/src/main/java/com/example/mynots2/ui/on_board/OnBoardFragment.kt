@@ -8,8 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.example.mynots2.R
-import com.example.mynots2.core.AppKey
-import com.example.mynots2.data.local_data.Pref
+
 import com.example.mynots2.data.model.OnBoardModel
 import com.example.mynots2.databinding.FragmentOnBoardBinding
 import com.example.mynots2.ui.on_board.adapter.OnBoardAdapter
@@ -19,7 +18,7 @@ class OnBoardFragment : Fragment() {
     private lateinit var binding: FragmentOnBoardBinding
 
     private lateinit var adapter: OnBoardAdapter
-    private lateinit var pref: Pref
+
     private var listModel = ArrayList<OnBoardModel>()
 
 
@@ -28,7 +27,7 @@ class OnBoardFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentOnBoardBinding.inflate(inflater, container, false)
-        pref = Pref(requireContext())
+
         return binding.root
     }
 
@@ -59,11 +58,11 @@ class OnBoardFragment : Fragment() {
         })
         binding.tvSkip.setOnClickListener {
             findNavController().navigate(R.id.action_OnBoardFragment_to_MainFragment)
-            pref.saveOnBoard(AppKey.ON_BOARD_KEY, true)
+
         }
         binding.beginButton.setOnClickListener {
             findNavController().navigate(R.id.action_OnBoardFragment_to_MainFragment)
-            pref.saveOnBoard(AppKey.ON_BOARD_KEY, true)
+
         }
 
         initdData()
