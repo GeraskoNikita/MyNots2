@@ -12,6 +12,7 @@ import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.mynots2.App
 import com.example.mynots2.R
+import com.example.mynots2.data.local.Pref
 import com.example.mynots2.data.model.NotesModel
 import com.example.mynots2.databinding.FragmentMainBinding
 import com.example.mynots2.ui.main_fragment.adapter.NotesAdapter
@@ -26,11 +27,14 @@ class MainFragment : Fragment() {
     private lateinit var notesList: List<NotesModel>
     private lateinit var adapter: NotesAdapter
 
+    private lateinit var pref: Pref
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentMainBinding.inflate(inflater, container, false)
+        pref = Pref(layoutInflater.context)
         ViewCompat.setOnApplyWindowInsetsListener(binding.MainFragment) { v, insets ->
             // Получаем отступы статус-бара
             val systemBarsInsets = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -67,6 +71,12 @@ class MainFragment : Fragment() {
         }
         binding.btAdd.setOnClickListener {
             findNavController().navigate(R.id.action_MainFragment_to_createNotesFragment)
+        }
+
+        binding.btnLogout.setOnClickListener {
+            auth.signOut()
+            pref.saveUserAuth(false)
+            findNavController().navigate(R.id.action_MainFragment_to_AuthFragment)
         }
     }
 

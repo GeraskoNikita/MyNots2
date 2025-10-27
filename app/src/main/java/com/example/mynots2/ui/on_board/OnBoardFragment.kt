@@ -58,6 +58,7 @@ class OnBoardFragment : Fragment() {
             }else{
                 findNavController().navigate(R.id.action_OnBoardFragment_to_AuthFragment)
             }
+            pref.saveOnBoard(true)
         }
         binding.beginButton.setOnClickListener {
             if (pref.isUserAuth()) {
@@ -65,6 +66,8 @@ class OnBoardFragment : Fragment() {
             }else{
                 findNavController().navigate(R.id.action_OnBoardFragment_to_AuthFragment)
             }
+
+            pref.saveOnBoard(true)
         }
 
         initdData()
